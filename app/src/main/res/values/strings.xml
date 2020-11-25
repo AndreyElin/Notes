@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">Notes</string>
+    <string name="note_creation_title">New note</string>
+</resources>
