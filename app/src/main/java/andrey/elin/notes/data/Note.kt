@@ -5,14 +5,19 @@ import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import andrey.elin.notes.R
 import kotlinx.android.parcel.Parcelize
+import kotlin.random.Random
 
 @Parcelize
 data class Note(
     val id: Long = noteId,
     val title: String = "",
     val note: String = "",
-    val color: Color = Color.GREEN,
+    val color: Color = Random.nextEnum(),
 ) : Parcelable
+
+inline fun <reified T : Enum<T>> Random.nextEnum(): T {
+    return enumValues<T>().random(this)
+}
 
 enum class Color {
     WHITE,
