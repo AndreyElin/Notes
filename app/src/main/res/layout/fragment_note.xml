@@ -46,5 +46,12 @@
             android:layout_marginTop="16dp"
             android:background="@null"
             android:hint="Текст заметки"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" Кнопка назад" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
