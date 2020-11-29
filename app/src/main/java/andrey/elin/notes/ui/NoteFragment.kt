@@ -5,6 +5,7 @@ import andrey.elin.notes.data.Note
 import andrey.elin.notes.presentation.NoteViewModel
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -32,7 +33,12 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
             bodyEt.setText(it.note)
         }
 
+        viewModel.showError().observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "Error while saving note!", Toast.LENGTH_LONG).show()
+        }
+
         button.setOnClickListener {
+            viewModel.saveNote()
             (requireActivity() as MainActivity).navigateTo(MainFragment())
         }
 
