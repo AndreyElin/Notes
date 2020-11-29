@@ -1,14 +1,14 @@
 package andrey.elin.notes.ui
 
+import andrey.elin.notes.R
+import andrey.elin.notes.data.Note
+import andrey.elin.notes.presentation.NoteViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import andrey.elin.notes.R
-import andrey.elin.notes.data.Note
-import andrey.elin.notes.presentation.NoteViewModel
 import kotlinx.android.synthetic.main.fragment_note.*
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
@@ -30,6 +30,10 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         viewModel.note?.let {
             titleEt.setText(it.title)
             bodyEt.setText(it.note)
+        }
+
+        button.setOnClickListener {
+            (requireActivity() as MainActivity).navigateTo(MainFragment())
         }
 
         toolbar.title = viewModel.note?.title ?: getString(R.string.note_creation_title)
