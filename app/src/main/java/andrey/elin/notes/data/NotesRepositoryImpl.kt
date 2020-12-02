@@ -1,5 +1,6 @@
 package andrey.elin.notes.data
 
+import andrey.elin.notes.data.db.FireStoreDatabaseProvider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlin.random.Random
@@ -8,30 +9,15 @@ private val idRandom = Random(0)
 val noteId: Long
     get() = idRandom.nextLong()
 
-object NotesRepositoryImpl : NotesRepository {
-    private val notes: MutableList<Note> = mutableListOf()
-
-    private val allNotes = MutableLiveData(getListForNotify())
+class NotesRepositoryImpl(val provider: FireStoreDatabaseProvider) : NotesRepository {
 
     override fun observeNotes(): LiveData<List<Note>> {
-        return allNotes
+        return provider.observeNotes()
     }
 
-    override fun addOrReplaceNote(newNote: Note) {
-        notes.find { it.id == newNote.id }?.let {
-            if (it == newNote) return
-
-            notes.remove(it)
-        }
-
-        notes.add(newNote)
-
-        allNotes.postValue(
-            getListForNotify()
-        )
-    }
-
-    private fun getListForNotify(): List<Note> = notes.toMutableList().also {
-        it.reverse()
+    override fun addOrReplaceNote(newNote: Note): LiveData<Result<Note>> {
+        return provider.addOrReplaceNote(newNote)
     }
 }
+
+val notesRepository: NotesRepository by lazy { NotesRepositoryImpl(FireStoreDatabaseProvider()) }
