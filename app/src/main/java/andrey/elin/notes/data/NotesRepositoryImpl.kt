@@ -9,7 +9,9 @@ private val idRandom = Random(0)
 val noteId: Long
     get() = idRandom.nextLong()
 
-class NotesRepositoryImpl(val provider: FireStoreDatabaseProvider) : NotesRepository {
+class NotesRepositoryImpl(private val provider: FireStoreDatabaseProvider) : NotesRepository {
+
+    override fun getCurrentUser() = provider.getCurrentUser()
 
     override fun observeNotes(): LiveData<List<Note>> {
         return provider.observeNotes()
