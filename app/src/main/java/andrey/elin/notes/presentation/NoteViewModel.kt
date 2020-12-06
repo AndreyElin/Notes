@@ -1,11 +1,10 @@
 package andrey.elin.notes.presentation
 
+import andrey.elin.notes.data.NotesRepository
 import androidx.lifecycle.*
-import andrey.elin.notes.data.Note
-import andrey.elin.notes.data.NotesRepositoryImpl
-import andrey.elin.notes.data.notesRepository
+import andrey.elin.notes.model.Note
 
-class NoteViewModel(var note: Note?) : ViewModel() {
+class NoteViewModel(private val notesRepository: NotesRepository, var note: Note?) : ViewModel() {
     private val showErrorLiveData = MutableLiveData<Boolean>()
 
     private val lifecycleOwner: LifecycleOwner = LifecycleOwner { viewModelLifecycle }

@@ -1,7 +1,7 @@
 package andrey.elin.notes.data.db
 
 import androidx.lifecycle.LiveData
-import andrey.elin.notes.data.Note
+import andrey.elin.notes.model.Note
 import andrey.elin.notes.model.User
 
 interface DatabaseProvider {

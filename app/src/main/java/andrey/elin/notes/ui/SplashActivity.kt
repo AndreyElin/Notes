@@ -5,35 +5,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
 import andrey.elin.notes.R
-import andrey.elin.notes.data.notesRepository
+import andrey.elin.notes.databinding.ActivitySplashBinding
 import andrey.elin.notes.errors.NoAuthException
 import andrey.elin.notes.presentation.SplashViewModel
 import andrey.elin.notes.presentation.SplashViewState
+import android.view.LayoutInflater
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val RC_SIGN_IN = 458
 
 class SplashActivity : AppCompatActivity() {
 
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return SplashViewModel(notesRepository) as T
-            }
-        }).get(
-            SplashViewModel::class.java
-        )
-    }
+    private val viewModel by viewModel<SplashViewModel>()
 
-    private val layoutRes: Int = R.layout.activity_splash
+    private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(layoutRes)
+        binding = ActivitySplashBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
 
         viewModel.observeViewState().observe(this) {
             when (it) {

@@ -1,15 +1,15 @@
 package andrey.elin.notes.data
 
-import andrey.elin.notes.data.db.FireStoreDatabaseProvider
+import andrey.elin.notes.data.db.DatabaseProvider
+import andrey.elin.notes.model.Note
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlin.random.Random
 
 private val idRandom = Random(0)
 val noteId: Long
     get() = idRandom.nextLong()
 
-class NotesRepositoryImpl(private val provider: FireStoreDatabaseProvider) : NotesRepository {
+class NotesRepositoryImpl(private val provider: DatabaseProvider) : NotesRepository {
 
     override fun getCurrentUser() = provider.getCurrentUser()
 
@@ -22,4 +22,3 @@ class NotesRepositoryImpl(private val provider: FireStoreDatabaseProvider) : Not
     }
 }
 
-val notesRepository: NotesRepository by lazy { NotesRepositoryImpl(FireStoreDatabaseProvider()) }

@@ -1,5 +1,6 @@
 package andrey.elin.notes.data
 
+import andrey.elin.notes.model.Note
 import andrey.elin.notes.model.User
 import androidx.lifecycle.LiveData
 

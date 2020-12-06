@@ -20,6 +20,10 @@ android {
         multiDexEnabled true
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,6 +53,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    // DI
+    def koin_ver = '2.1.6'
+    implementation "org.koin:koin-core:$koin_ver"
+    implementation "org.koin:koin-core-ext:$koin_ver"
+    implementation "org.koin:koin-android:$koin_ver"
+    implementation "org.koin:koin-androidx-scope:$koin_ver"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_ver"
 
 
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'

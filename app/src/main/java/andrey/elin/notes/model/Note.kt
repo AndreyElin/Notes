@@ -1,9 +1,10 @@
-package andrey.elin.notes.data
+package andrey.elin.notes.model
 
 import android.content.Context
 import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import andrey.elin.notes.R
+import andrey.elin.notes.data.noteId
 import kotlinx.android.parcel.Parcelize
 import kotlin.random.Random
 

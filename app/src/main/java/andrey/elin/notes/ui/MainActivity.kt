@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import andrey.elin.notes.R
 import android.content.Context
 import android.content.Intent
+import androidx.fragment.app.commit
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,11 +16,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateTo(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction
-                .replace(R.id.fragment_container_view, fragment)
-                .addToBackStack("notes")
-                .commit()
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container_view, fragment)
+            addToBackStack("notes")
+        }
     }
 
     companion object {

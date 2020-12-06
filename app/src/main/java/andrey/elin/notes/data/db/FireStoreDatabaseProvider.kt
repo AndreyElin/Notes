@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import andrey.elin.notes.data.Note
+import andrey.elin.notes.model.Note
 import andrey.elin.notes.errors.NoAuthException
 import andrey.elin.notes.model.User
 import com.google.firebase.auth.FirebaseAuth
